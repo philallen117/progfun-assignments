@@ -144,7 +144,7 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
     if (p(elem)) racc.incl(elem) else racc
   }
 
-  def union(that: TweetSet): TweetSet = left union right union that incl elem
+  def union(that: TweetSet): TweetSet = (left union (right union that)) incl elem
 
   def orBetter(bestSoFar: Tweet) = {
     val eBest = if (bestSoFar.retweets < elem.retweets) elem else bestSoFar
@@ -216,10 +216,11 @@ class Cons(val head: Tweet, val tail: TweetList) extends TweetList {
 
 
 object GoogleVsApple {
+  def containsKeyword(t: Tweet, keywords: List[String]): Boolean = keywords.exists(k => t.text.contains(k))
   val google = List("android", "Android", "galaxy", "Galaxy", "nexus", "Nexus")
   val apple = List("ios", "iOS", "iphone", "iPhone", "ipad", "iPad")
-  lazy val googleTweets: TweetSet = allTweets.filter(t => google.contains(t))
-  lazy val appleTweets: TweetSet = allTweets.filter(t => apple.contains(t))
+  lazy val googleTweets: TweetSet = allTweets.filter(t => containsKeyword(t,google))
+  lazy val appleTweets: TweetSet = allTweets.filter(t => containsKeyword(t, apple))
   
   /**
    * A list of all tweets mentioning a keyword from either apple or google,
