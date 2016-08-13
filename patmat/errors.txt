@@ -1,0 +1,154 @@
+======== LOG OF FAILED TESTS ========
+Your solution achieved a testing score of 199 out of 269.
+
+Below you can see a short feedback for every test that failed,
+indicating the reason for the test failure and how many points
+you lost for each individual test.
+
+Tests that were aborted took too long too complete or crashed the
+JVM. Such crashes can arise due to infinite non-terminitaing
+loops or recursion (StackOverflowException) or excessive mamory
+consumption (OutOfMemoryException).
+
+[Test Description] 'createCodeTree(someText)' gives an optimal encoding, the number of bits when encoding 'someText' is minimal
+[Observed Error] 0 did not equal 1919
+[Lost Points] 15
+
+[Test Description] quick encode gives the correct byte sequence
+[Observed Error] an implementation is missing
+[exception was thrown] detailed error message in debug output section below
+[Lost Points] 20
+
+[Test Description] convert: code table is created correctly
+[Observed Error] an implementation is missing
+[exception was thrown] detailed error message in debug output section below
+[Lost Points] 20
+
+[Test Description] combine of a singleton or nil
+[Observed Error] 1
+[exception was thrown] detailed error message in debug output section below
+[Lost Points] 5
+
+[Test Description] decode and quick encode is identity
+[Observed Error] an implementation is missing
+[exception was thrown] detailed error message in debug output section below
+[Lost Points] 10
+
+======== TESTING ENVIRONMENT ========
+Limits: memory: 256m,  total time: 850s,  per test case time: 240s
+
+======== DEBUG OUTPUT OF TESTING TOOL ========
+[test failure log] test name: HuffmanSuite::combine of a singleton or nil::5
+java.lang.IndexOutOfBoundsException: 1
+scala.collection.LinearSeqOptimized$class.apply(LinearSeqOptimized.scala:65)
+scala.collection.immutable.List.apply(List.scala:84)
+patmat.Huffman$.combine(Huffman.scala:132)
+patmat.HuffmanSuite$$anonfun$15.apply$mcV$sp(HuffmanSuite.scala:138)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply$mcV$sp(GradingSuite.scala:118)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply(GradingSuite.scala:117)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply(GradingSuite.scala:117)
+org.scalatest.Transformer$$anonfun$apply$1.apply$mcV$sp(Transformer.scala:22)
+org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)
+org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)
+org.scalatest.Transformer.apply(Transformer.scala:22)
+org.scalatest.Transformer.apply(Transformer.scala:20)
+org.scalatest.FunSuiteLike$$anon$1.apply(FunSuiteLike.scala:166)
+org.scalatest.Suite$class.withFixture(Suite.scala:1122)
+org.scalatest.FunSuite.withFixture(FunSuite.scala:1555)
+org.scalatest.FunSuiteLike$class.invokeWithFixture$1(FunSuiteLike.scala:163)
+org.scalatest.FunSuiteLike$$anonfun$runTest$1.apply(FunSuiteLike.scala:175)
+org.scalatest.FunSuiteLike$$anonfun$runTest$1.apply(FunSuiteLike.scala:175)
+org.scalatest.SuperEngine.runTestImpl(Engine.scala:306)
+org.scalatest.FunSuiteLike$class.runTest(FunSuiteLike.scala:175)
+org.scalatest.FunSuite.runTest(FunSuite.scala:1555)
+org.scalatest.FunSuiteLike$$anonfun$runTests$1.apply(FunSuiteLike.scala:208)
+org.scalatest.FunSuiteLike$$anonfun$runTests$1.apply(FunSuiteLike.scala:208)
+org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:413)
+org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:401)
+
+
+[test failure log] test name: HuffmanSuite::convert: code table is created correctly::20
+scala.NotImplementedError: an implementation is missing
+scala.Predef$.$qmark$qmark$qmark(Predef.scala:225)
+patmat.Huffman$.convert(Huffman.scala:255)
+patmat.HuffmanSuite$$anonfun$24$$anon$11.<init>(HuffmanSuite.scala:204)
+patmat.HuffmanSuite$$anonfun$24.apply$mcV$sp(HuffmanSuite.scala:203)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply$mcV$sp(GradingSuite.scala:118)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply(GradingSuite.scala:117)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply(GradingSuite.scala:117)
+org.scalatest.Transformer$$anonfun$apply$1.apply$mcV$sp(Transformer.scala:22)
+org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)
+org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)
+org.scalatest.Transformer.apply(Transformer.scala:22)
+org.scalatest.Transformer.apply(Transformer.scala:20)
+org.scalatest.FunSuiteLike$$anon$1.apply(FunSuiteLike.scala:166)
+org.scalatest.Suite$class.withFixture(Suite.scala:1122)
+org.scalatest.FunSuite.withFixture(FunSuite.scala:1555)
+org.scalatest.FunSuiteLike$class.invokeWithFixture$1(FunSuiteLike.scala:163)
+org.scalatest.FunSuiteLike$$anonfun$runTest$1.apply(FunSuiteLike.scala:175)
+org.scalatest.FunSuiteLike$$anonfun$runTest$1.apply(FunSuiteLike.scala:175)
+org.scalatest.SuperEngine.runTestImpl(Engine.scala:306)
+org.scalatest.FunSuiteLike$class.runTest(FunSuiteLike.scala:175)
+org.scalatest.FunSuite.runTest(FunSuite.scala:1555)
+org.scalatest.FunSuiteLike$$anonfun$runTests$1.apply(FunSuiteLike.scala:208)
+org.scalatest.FunSuiteLike$$anonfun$runTests$1.apply(FunSuiteLike.scala:208)
+org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:413)
+org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:401)
+
+
+[test failure log] test name: HuffmanSuite::quick encode gives the correct byte sequence::20
+scala.NotImplementedError: an implementation is missing
+scala.Predef$.$qmark$qmark$qmark(Predef.scala:225)
+patmat.Huffman$.quickEncode(Huffman.scala:270)
+patmat.HuffmanSuite$$anonfun$25$$anon$12.<init>(HuffmanSuite.scala:211)
+patmat.HuffmanSuite$$anonfun$25.apply$mcV$sp(HuffmanSuite.scala:210)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply$mcV$sp(GradingSuite.scala:118)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply(GradingSuite.scala:117)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply(GradingSuite.scala:117)
+org.scalatest.Transformer$$anonfun$apply$1.apply$mcV$sp(Transformer.scala:22)
+org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)
+org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)
+org.scalatest.Transformer.apply(Transformer.scala:22)
+org.scalatest.Transformer.apply(Transformer.scala:20)
+org.scalatest.FunSuiteLike$$anon$1.apply(FunSuiteLike.scala:166)
+org.scalatest.Suite$class.withFixture(Suite.scala:1122)
+org.scalatest.FunSuite.withFixture(FunSuite.scala:1555)
+org.scalatest.FunSuiteLike$class.invokeWithFixture$1(FunSuiteLike.scala:163)
+org.scalatest.FunSuiteLike$$anonfun$runTest$1.apply(FunSuiteLike.scala:175)
+org.scalatest.FunSuiteLike$$anonfun$runTest$1.apply(FunSuiteLike.scala:175)
+org.scalatest.SuperEngine.runTestImpl(Engine.scala:306)
+org.scalatest.FunSuiteLike$class.runTest(FunSuiteLike.scala:175)
+org.scalatest.FunSuite.runTest(FunSuite.scala:1555)
+org.scalatest.FunSuiteLike$$anonfun$runTests$1.apply(FunSuiteLike.scala:208)
+org.scalatest.FunSuiteLike$$anonfun$runTests$1.apply(FunSuiteLike.scala:208)
+org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:413)
+org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:401)
+
+
+[test failure log] test name: HuffmanSuite::decode and quick encode is identity::10
+scala.NotImplementedError: an implementation is missing
+scala.Predef$.$qmark$qmark$qmark(Predef.scala:225)
+patmat.Huffman$.quickEncode(Huffman.scala:270)
+patmat.HuffmanSuite$$anonfun$26$$anon$13.<init>(HuffmanSuite.scala:217)
+patmat.HuffmanSuite$$anonfun$26.apply$mcV$sp(HuffmanSuite.scala:216)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply$mcV$sp(GradingSuite.scala:118)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply(GradingSuite.scala:117)
+ch.epfl.lamp.grading.GradingSuite$$anonfun$test$1.apply(GradingSuite.scala:117)
+org.scalatest.Transformer$$anonfun$apply$1.apply$mcV$sp(Transformer.scala:22)
+org.scalatest.OutcomeOf$class.outcomeOf(OutcomeOf.scala:85)
+org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)
+org.scalatest.Transformer.apply(Transformer.scala:22)
+org.scalatest.Transformer.apply(Transformer.scala:20)
+org.scalatest.FunSuiteLike$$anon$1.apply(FunSuiteLike.scala:166)
+org.scalatest.Suite$class.withFixture(Suite.scala:1122)
+org.scalatest.FunSuite.withFixture(FunSuite.scala:1555)
+org.scalatest.FunSuiteLike$class.invokeWithFixture$1(FunSuiteLike.scala:163)
+org.scalatest.FunSuiteLike$$anonfun$runTest$1.apply(FunSuiteLike.scala:175)
+org.scalatest.FunSuiteLike$$anonfun$runTest$1.apply(FunSuiteLike.scala:175)
+org.scalatest.SuperEngine.runTestImpl(Engine.scala:306)
+org.scalatest.FunSuiteLike$class.runTest(FunSuiteLike.scala:175)
+org.scalatest.FunSuite.runTest(FunSuite.scala:1555)
+org.scalatest.FunSuiteLike$$anonfun$runTests$1.apply(FunSuiteLike.scala:208)
+org.scalatest.FunSuiteLike$$anonfun$runTests$1.apply(FunSuiteLike.scala:208)
+org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:413)
+org.scalatest.SuperEngine$$anonfun$traverseSubNodes$1$1.apply(Engine.scala:401)
