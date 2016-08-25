@@ -1,8 +1,6 @@
 package funsets
 
 import org.scalatest.FunSuite
-
-
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
@@ -77,6 +75,7 @@ class FunSetSuite extends FunSuite {
     val s1 = singletonSet(1)
     val s2 = singletonSet(2)
     val s3 = singletonSet(3)
+    val s4 = singletonSet(4)
   }
 
   /**
@@ -98,6 +97,7 @@ class FunSetSuite extends FunSuite {
        * the test fails. This helps identifying which assertion failed.
        */
       assert(contains(s1, 1), "Singleton")
+      assert(!contains(s1, 2), "Singleton negative")
     }
   }
 
@@ -106,9 +106,90 @@ class FunSetSuite extends FunSuite {
       val s = union(s1, s2)
       assert(contains(s, 1), "Union 1")
       assert(contains(s, 2), "Union 2")
+    }
+  }
+
+  test("union contains only elements of each set") {
+    new TestSets {
+      val s = union(s1, s2)
       assert(!contains(s, 3), "Union 3")
     }
   }
 
+   test("intersect contain only elements of both sets") {
+    new TestSets {
+      val u123 = union(union(s1, s2), s3)
+      val u234 = union(union(s2, s3), s4)
+      val i = intersect(u123, u234)
+      assert(!contains(i, 1), "Intersect 1")
+      assert(contains(i, 2), "Intersect 2")
+      assert(contains(i, 3), "Intersect 3")
+      assert(!contains(i, 4), "Intersect 4")
+    }
+  }
+
+  test("diff contains everything in s that is not in t, and nohting else"){
+    new TestSets {
+      val u123 = union(union(s1, s2), s3)
+      val u234 = union(union(s2, s3), s4)
+      val d = diff(u123, u234)
+      assert(contains(d, 1), "Diff 1")
+      assert(!contains(d, 2), "Diff 2")
+      assert(!contains(d, 3), "Diff 3")
+      assert(!contains(d, 4), "Diff 4")
+    }
+  }
+
+  test("filter contains everything in s where p, and contains nothing in s but not p, and noting outside s"){
+    new TestSets {
+      val u1234 = union(union(union(s1, s2), s3), s4)
+      def even(x: Int): Boolean = x % 2 == 0
+      val f = filter(u1234, even)
+      assert(contains(f, 2) && contains(f, 4), "Diff 1")
+      assert(!contains(f, 1), "Diff 2")
+      assert(!contains(f, 6), "Diff 3")
+    }
+  }
+
+  test("forall if all x in s and in [-bound, bound] are p; no matter what happens beyond bounds") {
+    new TestSets {
+      val u1234 = union(union(union(s1, s2), s3), s4)
+      def even(x: Int): Boolean = x % 2 == 0
+      assert(!forall(u1234, even), "Forall 1")
+      def le4(x: Int): Boolean = x <= 4
+      assert(forall(u1234, le4), "Forall 2")
+      val uu1000 = union(singletonSet(1000), u1234)
+      assert(!forall(uu1000, le4), "Forall 4")
+      val uu1001 = union(singletonSet(1001), u1234)
+      assert(forall(uu1001, le4), "Forall 3")
+    }
+  }
+
+  test("exist if some x in s and in [-bound, bound] is p; no matter what happens beyond bounds") {
+    new TestSets {
+      val u1234 = union(union(union(s1, s2), s3), s4)
+      def even(x: Int): Boolean = x % 2 == 0
+      assert(exists(u1234, even), "Exists 1")
+      def ge5(x: Int): Boolean = x >= 5
+      assert(!exists(u1234, ge5), "Exists 2")
+      val uu1000 = union(singletonSet(1000), u1234)
+      assert(exists(uu1000, ge5), "Exists 4")
+      val uu1001 = union(singletonSet(1001), u1234)
+      assert(!exists(uu1001, ge5), "Exists 3")
+    }
+  }
+
+  test("map does not lose stuff or leave stuff lying around") {
+    new TestSets {
+      val m1 = map(s1, x => x + 100)
+      assert(!contains(m1, 1), "Nothing left lying around")
+      assert(contains(m1, 101), "Mapped value present")
+      val u13 = union(s1, s3)
+      def mod2(x: Int) = x % 2
+      val m2 = map(u13, mod2)
+      assert(contains(m2, 1), "Many to one 1")
+      assert(!contains(m2, 2), "Many to one 2")
+    }
+  }
 
 }
