@@ -63,6 +63,32 @@ class TweetSetSuite extends FunSuite {
     }
   }
 
+//  test("mostRetweeted empty") {
+//    new TestSets {
+//      assert(true)
+//      assertThrows[NoSuchElementException] {
+//        set1.mostRetweeted
+//      }
+//    }
+//  }
+
+  test("mostRetweeted set5") {
+    new TestSets {
+      val m = set5.mostRetweeted
+      assert(m.retweets === 20)
+      assert(m.user === "a")
+    }
+  }
+
+  test("mostRetweeted set5 with two removed") {
+    new TestSets {
+      val s = set5.remove(new Tweet("a", "a body", 20)).remove(new Tweet("b", "b body", 20))
+      val m = s.mostRetweeted
+      assert(m.retweets === 9)
+      assert(m.user === "d")
+    }
+  }
+
   test("descending: set5") {
     new TestSets {
       val trends = set5.descendingByRetweet
@@ -71,4 +97,12 @@ class TweetSetSuite extends FunSuite {
     }
   }
 
+  test("descending: c, d") {
+    new TestSets {
+      val s = set1.incl(c).incl(d)
+      val sOrdered = s.descendingByRetweet
+      assert(sOrdered.head.user == "d")
+    }
   }
+
+}
