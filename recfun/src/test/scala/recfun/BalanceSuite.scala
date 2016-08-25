@@ -10,6 +10,10 @@ import org.scalatest.junit.JUnitRunner
 class BalanceSuite extends FunSuite {
   import Main.balance
 
+  test("balance: 'no brackets' is balanced") {
+    assert(balance("no brackets".toList))
+  }
+
   test("balance: '(if (zero? x) max (/ 1 x))' is balanced") {
     assert(balance("(if (zero? x) max (/ 1 x))".toList))
   }
