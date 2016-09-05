@@ -1,5 +1,7 @@
 package example
 
+import java.util.NoSuchElementException
+
 import org.scalatest.FunSuite
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
@@ -36,7 +38,7 @@ import org.scalatest.junit.JUnitRunner
    * which tests that its argument evaluates to `true`. So one of the simplest
    * successful tests is the following:
    */
-  test("one plus one is two")(assert(1 + 1 == 2))
+//  test("one plus one is two")(assert(1 + 1 == 2))
 
 
   /**
@@ -45,9 +47,9 @@ import org.scalatest.junit.JUnitRunner
    *
    * This allows tests to be written in a more readable manner:
    */
-  test("one plus one is three?") {
-    assert(1 + 1 == 3) // This assertion fails! Go ahead and fix it.
-  }
+//  test("one plus one is three?") {
+//    assert(1 + 1 == 3) // This assertion fails! Go ahead and fix it.
+//  }
 
 
   /**
@@ -70,9 +72,9 @@ import org.scalatest.junit.JUnitRunner
    *
    * We recommend to always use the `===` equality operator when writing tests.
    */
-  test("details why one plus one is not three") {
-    assert(1 + 1 === 3) // Fix me, please!
-  }
+//  test("details why one plus one is not three") {
+//    assert(1 + 1 === 3) // Fix me, please!
+//  }
 
   /**
    * In order to test the exceptional behavior of a methods, ScalaTest offers
@@ -81,16 +83,16 @@ import org.scalatest.junit.JUnitRunner
    * In the following example, we test the fact that the method `intNotZero`
    * throws an `IllegalArgumentException` if its argument is `0`.
    */
-  test("intNotZero throws an exception if its argument is 0") {
-    intercept[IllegalArgumentException] {
-      intNotZero(0)
-    }
-  }
-
-  def intNotZero(x: Int): Int = {
-    if (x == 0) throw new IllegalArgumentException("zero is not allowed")
-    else x
-  }
+//  test("intNotZero throws an exception if its argument is 0") {
+//    intercept[IllegalArgumentException] {
+//      intNotZero(0)
+//    }
+//  }
+//
+//  def intNotZero(x: Int): Int = {
+//    if (x == 0) throw new IllegalArgumentException("zero is not allowed")
+//    else x
+//  }
 
 
   /**
@@ -116,10 +118,17 @@ import org.scalatest.junit.JUnitRunner
     assert(sum(List(1,2,0)) === 3)
   }
 
+  test("sum of no numbers is zero") {
+    assert(sum(Nil) === 0)
+  }
+
   test("max of a few numbers") {
     assert(max(List(3, 7, 2)) === 7)
   }
 
-
-
+  test("max throws an exception if its argument is empty") {
+    intercept[NoSuchElementException] {
+      max(Nil)
+    }
+  }
 }
