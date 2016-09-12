@@ -65,22 +65,26 @@ trait Solver extends GameDef {
    * of different paths - the implementation should naturally
    * construct the correctly sorted stream.
    */
+
   def from(initial: Stream[(Block, List[Move])],
-           explored: Set[Block]): Stream[(Block, List[Move])] =
-  if (initial.isEmpty) Stream()
-  else {
-    val (b, lm) = initial.head
-    val nwh: Stream[(Block, List[Move])] = neighborsWithHistory(b, lm)
-    val nno: Stream[(Block, List[Move])] = newNeighborsOnly(nwh, explored)
-    def aux(n: (Block, List[Move])) = from(Stream(n), explored + n._1)
-    initial ++ nno ++ (nno flatMap aux)
+           explored: Set[Block]): Stream[(Block, List[Move])] = {
+    if (initial.isEmpty) Stream()
+    else {
+      // assume each path in initial has length k
+      val longer: Stream[(Block, List[Move])] = for {
+        path <- initial
+        continuation <- newNeighborsOnly(neighborsWithHistory(path._1, path._2), explored) // length k + 1
+      } yield continuation
+      initial ++ from(longer, explored ++ (longer map (_._1)))
+      // from called on stream of paths of lengths k + 1
+    }
   }
 
   /**
    * The stream of all paths that begin at the starting block.
    */
   lazy val pathsFromStart: Stream[(Block, List[Move])] = {
-    val ss = Stream((startBlock, List()))
+    val ss = Stream((startBlock, List())) // only path of length 1
     from(ss, Set(startBlock))
   }
 
@@ -98,6 +102,6 @@ trait Solver extends GameDef {
    * the first move that the player should perform from the starting
    * position.
    */
-  lazy val solution: List[Move] = pathsToGoal.head._2.reverse
+  lazy val solution: List[Move] = if (pathsToGoal.isEmpty) List() else pathsToGoal.head._2.reverse
 
 }
